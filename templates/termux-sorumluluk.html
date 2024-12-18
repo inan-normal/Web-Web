@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Termux Sorumluluk Bildirimi</title>
+<script>
+  document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && (event.key === 'u' || event.key === 's')) {
+    event.preventDefault();
+  }
+});
+document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});
+</script>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Courier New', Courier, monospace; /* CMD yazı tipi */
+  background-color: #000; /* Siyah arka plan */
+  color: #0f0; /* Yeşil metin */
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+header {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.sorumluluk {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.sorumluluk h3 {
+  color: #0f0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.sorumluluk p {
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.sorumluluk ul {
+  list-style: disc;
+  margin-left: 20px;
+  color: #ccc;
+}
+
+/* Animasyon Efekti */
+.typing-text {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: .15em solid #0f0; /* Yeşil imleç */
+  animation: typing 3s steps(40) infinite; /* Yavaş yazma animasyonu */
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* CMD Efekti */
+.cmd-window {
+  background-color: #000;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #0f0;
+  text-shadow: 0 0 5px #0f0;
+  position: relative; /* Eklenen kısım */
+}
+
+.cmd-window > span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.cmd-window > span:nth-child(even) {
+  color: #ccc;
+}
+
+.cmd-window > span:nth-child(odd) {
+  color: #0f0;
+}
+
+/* Klavye Girişini Engelleme */
+.cmd-window {
+  user-select: none;
+}
+
+/* Menü ve Klavye Kombinasyonlarını Engelleme */
+body {
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standardlar */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Eklenen stil */
+.cmd-window::before {
+  content: " ";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 5px;
+  height: 5px;
+  background-color: #0f0; /* Yeşil imleç */
+  border-radius: 50%; /* Yuvarlak imleç */
+}
+</style>
+</head>
+<body>
+  <header>
+    <h1>Termux Sorumluluk Bildirimi</h1>
+  </header>
+
+  <div class="container">
+    <div class="cmd-window">
+      <span>C:\>  </span>
+      <span class="typing-text">Termux Kullanımı İçin Sorumluluk Reddi</span>
+    </div>
+
+    <div class="sorumluluk">
+      <h3>Sorumluluk Reddi ve Kullanım Koşulları</h3>
+      <p>Bu uygulamayı kullanarak, aşağıdaki şartları ve koşulları kabul etmiş oluyorsunuz:</p>
+      <ul>
+        <li>Bu uygulamada paylaşılan tüm kodlar sadece bilgi amaçlıdır.</li>
+        <li>Kodları kullanmanız sonucu ortaya çıkabilecek herhangi bir hasar, kayıp veya sorundan bu uygulamanın sorumlu olmadığını kabul edersiniz.</li>
+        <li>Paylaşılan kodları kullanmak tamamen sizin sorumluluğunuzdadır ve olası risklerin farkında olmanız gerekmektedir.</li>
+        <li>Bu uygulama, kodların kullanımından doğabilecek doğrudan veya dolaylı zararlardan mesul değildir.</li>
+      </ul>
+      <p><strong>Uygulamayı kullanarak, bu sorumlulukları kabul ettiğinizi ve bu uygulamayı kendi sorumluluğunuz altında kullandığınızı onaylıyorsunuz.</strong></p>
+    </div>
+  </div>
+</body>
+</html>

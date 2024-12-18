@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .terminal {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid green;
+            box-sizing: border-box;
+        }
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        input {
+            background-color: black;
+            color: green;
+            border: none;
+            border-bottom: 2px solid green;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: black;
+            color: green;
+            border: 2px solid green;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: green;
+            color: black;
+        }
+        .message {
+            margin-top: 20px;
+            color: red;
+        }
+        header, footer {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: black;
+        }
+        header {
+            border-bottom: 2px solid green;
+        }
+        footer {
+            border-top: 2px solid green;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kullanıcı adı ve şifreyi discord üzerinden alın</h1>
+    </header>
+    <div class="terminal">
+        <form method="post" action="{{ url_for('login') }}">
+            <label for="username">Kullanıcı Adı:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Şifre:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Giriş Yap</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="message">
+                    <ul>
+                        {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <footer>
+        <p>&copy; Kod / Sms sitesine hoş geldiniz, W-O-L-F</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CMD - WOLF</title>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #000;
+  color: #0f0;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+header {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.cmd-window {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #0f0;
+  text-shadow: 0 0 5px #0f0;
+}
+
+.cmd-window > span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.cmd-window > span:nth-child(even) {
+  color: #ccc;
+}
+
+.cmd-window > span:nth-child(odd) {
+  color: #0f0;
+}
+
+/* Animasyon Efekti */
+.typing-text {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: .15em solid #0f0;
+  animation: typing 3s steps(40) infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  color: #ccc;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #333;
+  color: #0f0;
+}
+
+.btn {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.btn:hover {
+  background-color: #1a252f;
+  transform: scale(1.05);
+}
+
+/* Arama Çubuğu */
+.search-bar {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.search-input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #333;
+  color: #0f0;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.search-button:hover {
+  background-color: #1a252f;
+}
+
+/* Card Container Styles */
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Site 1 Styles */
+.card-1, .card-2, .card-3, .card-4, .card-5, .card-6, .card-7, .card-8, .card-9, .card-10, .card-11, .card-12, .card-13, .card-14, .card-15, .card-16, .card-17, .card-18, .card-19, .card-20 {
+  background-color: #111;
+  border: 2px solid #333;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 48%; /* Her iki kartın toplam genişliği 96% yapıyor. */
+  max-width: 500px; /* Max-width, kartın genişliğini sınırlamasını sağlar. */
+}
+
+.card-1 h2, .card-2 h2, .card-3 h2, .card-4 h2, .card-5 h2, .card-6 h2, .card-7 h2, .card-8 h2, .card-9 h2, .card-10 h2, .card-11 h2, .card-12 h2, .card-13 h2, .card-14 h2, .card-15 h2, .card-16 h2, .card-17 h2, .card-18 h2, .card-19 h2, .card-20 h2 {
+  color: #0f0;
+  margin-top: 0;
+}
+
+.card-1 p, .card-2 p, .card-3 p, .card-4 p, .card-5 p, .card-6 p, .card-7 p, .card-8 p, .card-9 p, .card-10 p, .card-11 p, .card-12 p, .card-13 p, .card-14 p, .card-15 p, .card-16 p, .card-17 p, .card-18 p, .card-19 p, .card-20 p {
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.card-1 a, .card-2 a, .card-3 a, .card-4 a, .card-5 a, .card-6 a, .card-7 a, .card-8 a, .card-9 a, .card-10 a, .card-11 a, .card-12 a, .card-13 a, .card-14 a, .card-15 a, .card-16 a, .card-17 a, .card-18 a, .card-19 a, .card-20 a {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.card-1 a:hover, .card-2 a:hover, .card-3 a:hover, .card-4 a:hover, .card-5 a:hover, .card-6 a:hover, .card-7 a:hover, .card-8 a:hover, .card-9 a:hover, .card-10 a:hover, .card-11 a:hover, .card-12 a:hover, .card-13 a:hover, .card-14 a:hover, .card-15 a:hover, .card-16 a:hover, .card-17 a:hover, .card-18 a:hover, .card-19 a:hover, .card-20 a:hover {
+  background-color: #1a252f;
+}
+
+/* Alerts */
+.alert {
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert .close {
+  color: #000;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+/* Kaydırma çubuğu stilini düzenleme */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2c3e50;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0056b3;
+}
+
+.code-container {
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #0f0;
+  text-shadow: 0 0 5px #0f0;
+  overflow: auto; /* Kodu kaydırılabilir yapmak için */
+  display: none; /* Başlangıçta kodları gizle */
+}
+
+.code-container.show { /* Aramada bulunduktan sonra göster */
+  display: block;
+}
+
+.code-container pre {
+  margin: 0;
+  padding: 0;
+}
+</style>
+</head>
+<body>
+<div class="bg">
+  <header>
+    <h1>W-O-L-F</h1>
+  </header>
+  <main>
+    <div class="container">
+      <div class="search-bar">
+        <input type="text" id="search-input" class="search-input" placeholder="Aradınız şeyi bulanamadın mı (Cmd sınırısz aç),(Dosya sil)">
+        <button onclick="searchSite()" class="search-button">Ara (Boş Aradınız Zaman Hepsi Gelir)</button>
+      </div>
+
+      <div id="aramaSonuc" class="mt-3">
+        <!-- Arama sonucunda kodlar buraya gelecek -->
+      </div>
+
+      <div class="info-section mt-5">
+        <p class="mb-0">
+          <span class="font-weight-bold">Hakkımızda:</span> W-O-L-F, Sitesinin ana sayfası keşfet
+        </p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+// Kodlar ve açıklamaları dizi olarak saklıyoruz
+const kodlar = [
+  {
+    "ad": "Merhaba Dünya!",
+    "kod": "echo \"Merhaba Dünya!\"",
+    "aciklama": "Ekrana \"Merhaba Dünya!\" mesajını yazar."
+  },
+  {
+    "ad": "Cmd Sınırsız Aç",
+    "kod": `@echo off
+:loop
+start cmd
+goto loop,`,
+
+"aciklama": "Sınırsız cmd açar kullanım .bat"
+  },
+  {
+    "ad": "Siteden Bilgi Al",
+    "kod": `curl https://www.ornek.com -o cikan.html`,
+
+"aciklama": "Siteden bilgi alıyor"
+  },
+  {
+    "ad": "Dizin İçeriği",
+    "kod": "dir",
+    "aciklama": "Geçerli dizindeki dosya ve klasörleri listeler."
+  },
+  {
+    "ad": "Masaüstüne Git",
+    "kod": "cd C:\\Users\\KullanıcıAdı\\Desktop",
+    "aciklama": "Kullanıcının masaüstüne gider."
+  },
+  {
+    "ad": "Komut Satırı Temizleme",
+    "kod": "cls",
+    "aciklama": "Komut satırını temizler."
+  },
+  {
+    "ad": "Ağ Bilgileri",
+    "kod": "ipconfig",
+    "aciklama": "Bilgisayarın IP adresini, alt ağ maskesini ve diğer ağ bilgilerini gösterir."
+  },
+  {
+    "ad": "Ping Testi",
+    "kod": "ping google.com",
+    "aciklama": "Google'a ping atar ve bağlantı süresini ölçer."
+  },
+  {
+    "ad": "Çalışan Görevler",
+    "kod": "tasklist",
+    "aciklama": "Şu anda çalışan görevleri listeler."
+  },
+  {
+    "ad": "Bilgisayarı Kapat",
+    "kod": "shutdown /s",
+    "aciklama": "Bilgisayarı kapatır."
+  },
+  {
+    "ad": "Bilgisayarı Yeniden Başlat",
+    "kod": "shutdown /r",
+    "aciklama": "Bilgisayarı yeniden başlatır."
+  },
+  {
+    "ad": "Ağ Bağlantıları",
+    "kod": "netstat -a",
+    "aciklama": "Tüm ağ bağlantıları hakkında bilgi gösterir."
+  },
+  {
+    "ad": "Paket İzleme",
+    "kod": "tracert google.com",
+    "aciklama": "Google'a bir paket izleme yapar ve paketin geçtiği yönlendiricileri gösterir."
+  },
+  {
+    "ad": "DNS Bilgileri",
+    "kod": "nslookup google.com",
+    "aciklama": "Google'ın IP adresini ve DNS bilgilerini gösterir."
+  },
+  {
+    "ad": "Oturum Açan Kullanıcı",
+    "kod": "whoami",
+    "aciklama": "Şu anda oturum açmış kullanıcının adını gösterir."
+  },
+  {
+    "ad": "Sistem Bilgileri",
+    "kod": "systeminfo",
+    "aciklama": "Bilgisayarın sistem bilgileri hakkında detaylı bilgi gösterir."
+  },
+  {
+    "ad": "Tarih",
+    "kod": "date",
+    "aciklama": "Günün tarihini gösterir."
+  },
+  {
+    "ad": "Saat",
+    "kod": "time",
+    "aciklama": "Günün saatini gösterir."
+  },
+  {
+    "ad": "Windows Sürümü",
+    "kod": "ver",
+    "aciklama": "Windows'un sürümünü gösterir."
+  },
+  {
+    "ad": "Komut Yardımı",
+    "kod": "help",
+    "aciklama": "Tüm CMD komutlarının listesini gösterir."
+  },
+  {
+    "ad": "Dosya Kopyalama",
+    "kod": "copy C:\\Dosya1.txt C:\\Dosya2.txt",
+    "aciklama": "Dosya1.txt'yi Dosya2.txt olarak kopyalar."
+  },
+  {
+    "ad": "Dosya Silme",
+    "kod": "del C:\\Dosya1.txt",
+    "aciklama": "Bu kod, \"C:\\Dosya1.txt\" adlı dosyayı silmek için kullanılır."
+  }
+];
+
+// Arama Fonksiyonu
+function searchSite() {
+  const aramaTerimi = document.getElementById('search-input').value.toLowerCase();
+  const aramaSonucDiv = document.getElementById('aramaSonuc');
+  aramaSonucDiv.innerHTML = ''; // Önceki sonuçları temizle
+
+  let bulunanKod = false;
+
+  kodlar.forEach(kod => {
+    if (kod.ad.toLowerCase().includes(aramaTerimi) || kod.kod.toLowerCase().includes(aramaTerimi)) {
+      bulunanKod = true;
+
+      const kodKarti = document.createElement('div');
+      kodKarti.classList.add('card'); // CSS stilini uygula
+
+      const cmdWindow = document.createElement('div');
+      cmdWindow.classList.add('cmd-window');
+      cmdWindow.innerHTML = `
+        <span>C:\> </span>
+        <span>${kod.ad}</span>
+      `;
+      kodKarti.appendChild(cmdWindow);
+
+      const kodKonteyner = document.createElement('div');
+      kodKonteyner.classList.add('code-container');
+      kodKonteyner.classList.add('show'); // Aramada bulunduktan sonra göster
+      kodKonteyner.innerHTML = `
+        <pre>
+          <code>
+            ${kod.kod}
+          </code>
+        </pre>
+      `;
+      kodKarti.appendChild(kodKonteyner);
+
+      const aciklama = document.createElement('p');
+      aciklama.textContent = kod.aciklama;
+      kodKarti.appendChild(aciklama);
+
+      aramaSonucDiv.appendChild(kodKarti);
+    }
+  });
+
+  if (!bulunanKod) {
+    const mesaj = document.createElement('p');
+    mesaj.textContent = "Aradığınız koda ulaşılamadı.";
+    aramaSonucDiv.appendChild(mesaj);
+  }
+}
+document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && (event.key === 'u' || event.key === 's')) {
+    event.preventDefault();
+  }
+});
+document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});
+</script>
+
+</body>
+</html>

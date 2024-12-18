@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SMS - W-O-L-F</title>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Courier New', Courier, monospace; 
+  background: linear-gradient(to right, #2c3e50, #3498db);
+  color: #fff; 
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+header {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.cmd-window {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #444;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #0f0;
+  text-shadow: 0 0 5px #0f0;
+}
+
+.cmd-window > span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.cmd-window > span:nth-child(even) {
+  color: #ccc;
+}
+
+.cmd-window > span:nth-child(odd) {
+  color: #0f0;
+}
+
+/* Animasyon Efekti */
+.typing-text {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: .15em solid #0f0; 
+  animation: typing 3s steps(40) infinite; 
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  color: #ccc;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+}
+
+.btn {
+  background-color: #2c3e50; 
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #1a252f;
+}
+
+/* Uyarı Mesajı */
+.warning {
+  background-color: #f08080; /* Açık kırmızı */
+  color: #000;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Flash Mesajları */
+.flash-messages {
+  margin-bottom: 20px;
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.alert-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.alert-success {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Klavye Girişini Engelleme */
+.cmd-window {
+  user-select: none;
+}
+
+/* Menü ve Klavye Kombinasyonlarını Engelleme */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>W-O-L-F</h1>
+</header>
+<div class="container">
+  <!-- Flash mesajları için alan -->
+  <div class="flash-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+            <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <div class="cmd-window">
+    <span>C:\> </span>
+    <span class="typing-text">Ana sayfada sms sorumluluk formunu okumayı unutmayın</span>
+  </div>
+  <div class="cmd-window">
+    <span>C:\> </span>
+    <span>Telefon Numarası (Örn: 5555555555):</span>
+    <form method="POST" action="/sms_gonder">
+      <div class="form-group">
+        <input type="text" class="form-control" id="tel_no" name="tel_no" required>
+      </div>
+      <button type="submit" class="btn">Gönder</button>
+    </form>
+  </div>
+  <div class="warning">
+    <strong>UYARI:</strong> Bu sitede SMS gönderme işlemi yalnızca şaka amaçlıdır. Lütfen spam göndermekten kaçının ve mesaj göndermeden önce karşı tarafın iznini alın.
+  </div>
+</div>
+<script>
+document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && (event.key === 'u' || event.key === 's')) {
+    event.preventDefault();
+  }
+});
+document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+</script>
+</body>
+</html>

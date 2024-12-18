@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Sayfa Bulunamadı</title>
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: "Courier New", Courier, monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .error-code {
+            font-size: 5em;
+        }
+        .cmd-text {
+            text-align: left;
+            margin: auto;
+            width: 50%;
+            background-color: black;
+            padding: 20px;
+            border: 1px solid green;
+            overflow: hidden;
+            white-space: pre-wrap;
+        }
+        .typing-animation {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: green; }
+        }
+    </style>
+
+<script>
+    document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && (event.key === 'u' || event.key === 's')) {
+    event.preventDefault();
+  }
+});
+document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});
+</script>
+</head>
+<body>
+    <div class="cmd-text">
+        <h1 class="error-code">404</h1>
+        <p class="typing-animation">HATA: Aradığınız sayfa bulunamadı.</p>
+        <p class="typing-animation">Lütfen URL'yi kontrol edin ve tekrar deneyin.</p>
+        <p class="typing-animation">_</p>
+    </div>
+</body>
+</html>

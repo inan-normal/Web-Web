@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>API Listesi - W-O-L-F</title>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Courier New', Courier, monospace; 
+  background-color: #000; 
+  color: #0f0;
+}
+
+/* Kaydırma çubuğu stilini düzenleme */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2c3e50;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0056b3;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+header {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.api-list {
+  text-align: left;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.api-item {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #0f0;
+}
+
+.api-item:nth-child(even) {
+  background-color: #222;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>W-O-L-F API Listesi</h1>
+</header>
+<div class="container">
+  <div class="api-list">
+    {% for api in servisler_api %}
+      <div class="api-item">
+        {{ api.__name__ }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+    document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && (event.key === 'u' || event.key === 's')) {
+      event.preventDefault();
+    }
+  });
+  document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+  });
+  </script>
+</body>
+</html>
